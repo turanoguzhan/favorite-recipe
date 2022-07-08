@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.11.xsd">
+
+    <changeSet id="03.07.2022 23:55:30" author="oguzhan.turan">
+        <sql>
+            CREATE TABLE account
+            (
+                id                 bigserial   NOT NULL PRIMARY KEY,
+                name               varchar(64) NOT NULL,
+                lastname           varchar(64) NOT NULL,
+                username           varchar(64) NOT NULL,
+                password           varchar(64) NOT NULL,
+                status             varchar(16)  DEFAULT 'ACTIVE',
+                version            smallint     NOT NULL DEFAULT 0,
+                created_by         varchar(64),
+                created_date       timestamp    NOT NULL DEFAULT now(),
+                last_modified_by   varchar(64),
+                last_modified_date timestamp,
+
+                CONSTRAINT pk_account_id PRIMARY KEY (id)
+            );
+            CREATE INDEX idx_account_id ON account(id);
+        </sql>
+        <sql>
+            COMMENT ON TABLE account IS 'Information of users';
+            COMMENT ON COLUMN account.id IS 'primary key of the user table';
+            COMMENT ON COLUMN account.name IS 'Name of User';
+            COMMENT ON COLUMN account.lastname IS 'Lastname of User';
+            COMMENT ON COLUMN account.username IS 'Username of User';
+            COMMENT ON COLUMN account.password IS 'Password of User';
+            COMMENT ON COLUMN account.status IS 'Status of User > ACTIVE / PASSIVE';
+            COMMENT ON COLUMN account.version IS 'Version number';
+            COMMENT ON COLUMN account.created_by IS 'created by ... ';
+            COMMENT ON COLUMN account.created_date IS 'created date';
+            COMMENT ON COLUMN account.last_modified_by IS 'the last modified by ...';
+            COMMENT ON COLUMN account.last_modified_date IS 'date-time of the last modification';
+        </sql>
+    </changeSet>
+    <changeSet id="04.07.2022 00:00:30" author="oguzhan.turan">
+        <sql>
+            CREATE TABLE recipe
+            (
+                id                 bigserial   NOT NULL PRIMARY KEY,
+                name               varchar(256) NOT NULL,
+                dish_type          varchar(64) NOT NULL,
+                serving_num        int NOT NULL,
+                ingredients        varchar(1024) NOT NULL,
+                instructions       varchar(4096) NOT NULL,
+                user_id            bigint NOT NULL,
+                status             varchar(16)  DEFAULT 'ACTIVE',
+                version            smallint     NOT NULL DEFAULT 0,
+                created_by         varchar(64),
+                created_date       timestamp    NOT NULL DEFAULT now(),
+                last_modified_by   varchar(64),
+                last_modified_date timestamp,
+
+                CONSTRAINT pk_recipe_id PRIMARY KEY (id),
+                CONSTRAINT fk_recipe_account_id FOREIGN KEY (user_id) REFERENCES account(id)
+            );
+            CREATE INDEX idx_recipe_id ON recipe (id);
+        </sql>
+        <sql>
+            COMMENT ON TABLE recipe IS 'Information of recipes';
+            COMMENT ON COLUMN recipe.id IS 'primary key of the recipe table';
+            COMMENT ON COLUMN recipe.name IS 'Name of Recipe';
+            COMMENT ON COLUMN recipe.dish_type IS 'Dish Type of Recipe';
+            COMMENT ON COLUMN recipe.serving_num IS 'Servings num of Recipe';
+            COMMENT ON COLUMN recipe.ingredients IS 'Ingredients of Recipe';
+            COMMENT ON COLUMN recipe.instructions IS 'Instructions of Recipe';
+            COMMENT ON COLUMN recipe.user_id IS 'which user add this recipe info';
+            COMMENT ON COLUMN recipe.status IS 'Status of Recipe > ACTIVE / PASSIVE';
+            COMMENT ON COLUMN recipe.version IS 'Version number';
+            COMMENT ON COLUMN recipe.created_by IS 'created by ... ';
+            COMMENT ON COLUMN recipe.created_date IS 'created date';
+            COMMENT ON COLUMN recipe.last_modified_by IS 'the last modified by ...';
+            COMMENT ON COLUMN recipe.last_modified_date IS 'date-time of the last modification';
+        </sql>
+    </changeSet>
+    <changeSet id="04.07.2022 00:05:30" author="oguzhan.turan">
+        <sql>
+            CREATE TABLE favorite_user_recipe
+            (
+                id                 bigserial   NOT NULL PRIMARY KEY,
+                recipe_id          bigint NOT NULL,
+                user_id            bigint NOT NULL,
+                is_private         boolean NOT NULL DEFAULT FALSE,
+                list_name          varchar(64) NOT NULL DEFAULT 'my_fav_list',
+                status             varchar(16)  DEFAULT 'ACTIVE',
+                version            smallint     NOT NULL DEFAULT 0,
+                created_by         varchar(64),
+                created_date       timestamp    NOT NULL DEFAULT now(),
+                last_modified_by   varchar(64),
+                last_modified_date timestamp,
+                CONSTRAINT pk_fav_user_recipe_id PRIMARY KEY (id),
+                CONSTRAINT fk_fav_recipe_id FOREIGN KEY (recipe_id) REFERENCES recipe(id),
+                CONSTRAINT fk_fav_account_id FOREIGN KEY (user_id) REFERENCES account(id)
+            );
+            CREATE INDEX idx_fav_account_recipe_id ON favorite_user_recipe (id);
+        </sql>
+        <sql>
+            COMMENT ON TABLE favorite_user_recipe IS 'Information of recipes';
+            COMMENT ON COLUMN favorite_user_recipe.id IS 'primary key of the recipe table';
+            COMMENT ON COLUMN favorite_user_recipe.recipe_id IS 'a foreign key that references of recipe table';
+            COMMENT ON COLUMN favorite_user_recipe.user_id IS 'foreign key that references of user table';
+            COMMENT ON COLUMN favorite_user_recipe.is_private IS 'If fav list is private TRUE, fav list will be shown by just user him/herself';
+            COMMENT ON COLUMN favorite_user_recipe.list_name IS 'Name of the fav list';
+            COMMENT ON COLUMN favorite_user_recipe.status IS 'Status of Recipe > ACTIVE / PASSIVE';
+            COMMENT ON COLUMN favorite_user_recipe.version IS 'Version number';
+            COMMENT ON COLUMN favorite_user_recipe.created_by IS 'created by ... ';
+            COMMENT ON COLUMN favorite_user_recipe.created_date IS 'created date';
+            COMMENT ON COLUMN favorite_user_recipe.last_modified_by IS 'the last modified by ...';
+            COMMENT ON COLUMN favorite_user_recipe.last_modified_date IS 'date-time of the last modification';
+        </sql>
+    </changeSet>
+</databaseChangeLog>

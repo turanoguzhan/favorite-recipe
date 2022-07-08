@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.11.xsd">
+    <changeSet id="04.07.2022 01:10:20" author="oguzhan.turan">
+        <insert tableName="account">
+            <column name="ID" valueNumeric="1"/>
+            <column name="name" value="User-Name-1"/>
+            <column name="lastname" value="User-Lastname-1"/>
+            <column name="username" value="Username-1"/>
+            <column name="password" value="111111"/>
+        </insert>
+        <insert tableName="account">
+            <column name="ID" valueNumeric="2"/>
+            <column name="name" value="User-Name-2"/>
+            <column name="lastname" value="User-Lastname-2"/>
+            <column name="username" value="Username-2"/>
+            <column name="password" value="222222"/>
+        </insert>
+        <insert tableName="account">
+            <column name="ID" valueNumeric="3"/>
+            <column name="name" value="User-Name-3"/>
+            <column name="lastname" value="User-Lastname-3"/>
+            <column name="username" value="Username-3"/>
+            <column name="password" value="333333"/>
+        </insert>
+    </changeSet>
+    <changeSet id="04.07.2022 01:15:30" author="oguzhan.turan">
+        <insert tableName="recipe">
+            <column name="ID" valueNumeric="1" />
+            <column name="name" value="No-Bake Cheesecake Flag Cake" />
+            <column name="dish_type" value="DESSERT" />
+            <column name="serving_num" valueNumeric="12" />
+            <column name="ingredients" value="1+1/2 cups finely crushed graham cracker crumbs, 1/4 cup white sugar, 2 tablespoons unsweetened cocoa powder, 6 tablespoons butter, melted, 2 teaspoons grated lemon zest, 2 teaspoons lemon juice, 1 teaspoon vanilla extract, 1/3 cup white sugar, 1+1/4 cups cold heavy whipping cream, 20 large fresh strawberries, hulled and halved lengthwise, or as needed, 24 large fresh blueberries, or as needed, Filling:1 cup cream cheese at room temperature, 1 cup mascarpone cheese at room temperature" />
+            <column name="instructions" value="Combine graham cracker crumbs, 1/4 cup sugar, cocoa powder, and melted butter in a bowl until mixture is thoroughly combined and crumbly.
+                Transfer crust mixture to a 9x11-inch baking dish. Press crust into bottom of dish until smooth and even. Cover dish with plastic wrap and refrigerate until set, about 30 minutes.
+                Mix cream cheese and mascarpone cheese in a bowl until thoroughly combined. Stir in lemon zest, lemon juice, and vanilla extract into mixture.
+                Whisk 1/3 cup sugar into whipping cream in a separate metal or glass bowl until the cream is fluffy and forms soft peaks. Add whipped cream to the cream cheese mixture and gently whisk until filling is soft, fluffy, and well combined.
+                Spoon filling on top of the graham cracker crust, spreading and smoothing the top. Tap the pan gently on a work surface several times to settle the crust and filling. Cover pan tightly with plastic wrap and refrigerate until chilled and set, at least 3 hours.
+                Starting at the bottom long edge of the cake, arrange strawberry halves in a horizontal line with the pointed bottoms of the strawberry halves pointing to the right. Start a second stripe of strawberry halves at the top right of the cake, arranging strawberries with the bottoms pointing right in a line stretching about 2/3 of the length of the cake.
+                Continue to make strawberry stripes, starting about 3/4 inch up from the bottom stripe and laying down 3 more stripes stretching the full length of the cake. Make 1 more line of strawberries beneath the short stripe to leave a square space for the blue field of stars.
+                Lay a line of blueberries with the blossom ends pointing up in the upper left square space. Continue to lay down blueberries in lines, berries touching the previous line, until the square is filled with blueberries. Cut cake into squares to serve." />
+            <column name="user_id" valueNumeric="3"/>
+            <column name="created_by" value="Username-3"/>
+        </insert>
+        <insert tableName="recipe">
+            <column name="ID" valueNumeric="2" />
+            <column name="name" value="Good Old Fashioned Pancakes" />
+            <column name="dish_type" value="BREAKFAST" />
+            <column name="serving_num" valueNumeric="8" />
+            <column name="ingredients" value="1+1/2 cups all-purpose flour, 3+1/2 teaspoons baking powder, 3/4 teaspoon salt, or more to taste, 1 tablespoon white sugar, 1+1/4 cups milk, 1 egg, 3 tablespoons butter, melted" />
+            <column name="instructions" value="In a large bowl, sift together the flour, baking powder, salt and sugar. Make a well in the center and pour in the milk, egg and melted butter; mix until smooth.Heat a lightly oiled griddle or frying pan over medium-high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake. Brown on both sides and serve hot." />
+            <column name="user_id" valueNumeric="1"/>
+            <column name="created_by" value="Username-1"/>
+        </insert>
+        <insert tableName="recipe">
+            <column name="ID" valueNumeric="3" />
+            <column name="name" value="Mom's Ice Cream Dessert" />
+            <column name="dish_type" value="DESSERT" />
+            <column name="serving_num" valueNumeric="24" />
+            <column name="ingredients" value="1 (20 ounce) package chocolate sandwich cookies, 1/2 cup margarine, melted, 1+1/2 cups chopped Spanish peanuts, 1/2 gallon vanilla ice cream, softened, 2 cups confectioners' sugar, 1 (12 fluid ounce) can evaporated milk, 2/3 cup semisweet chocolate chips, 1/2 cup margarine, 1 teaspoon vanilla extract" />
+            <column name="instructions" value="Crush all but 10 of the cookies. Combine crushed cookies in large bowl with melted margarine and peanuts. Press mixture into a 9x13 inch baking dish and freeze until cold.
+                                                Spread softened ice cream over cold crust and freeze until set.
+                                                Combine confectioners' sugar, evaporated milk, chocolate chips, 1/2 cup margarine and vanilla in large saucepan and bring to a boil over medium heat. Boil for 7 minutes, stirring constantly.
+                                                Remove from heat and cool completely; pour mixture over ice cream and freeze until set." />
+            <column name="user_id" valueNumeric="2"/>
+            <column name="created_by" value="Username-2"/>
+        </insert>
+
+        <insert tableName="recipe">
+            <column name="ID" valueNumeric="4" />
+            <column name="name" value="Vegetarian Chili" />
+            <column name="dish_type" value="VEGETARIAN" />
+            <column name="serving_num" valueNumeric="6" />
+            <column name="ingredients" value="1 (12 ounce) package frozen burger-style crumbles, 2 (15 ounce) cans black beans, rinsed and drained, 2 (15 ounce) cans dark red kidney beans,
+                                              1 (15 ounce) can light red kidney beans, 1 (29 ounce) can diced tomatoes, 1 (12 fluid ounce) can tomato juice,
+                                              5 onions, chopped, 3 tablespoons chili powder, 1½ tablespoons ground cumin, 1 tablespoon garlic powder, 2 bay leaves, salt and pepper to taste" />
+            <column name="instructions" value="In a large pot, combine meat substitute, black beans, kidney beans, diced tomatoes, tomato juice, onions, chili powder, cumin, garlic powder, bay leaves, salt and pepper.
+                                                Bring to a simmer and cover. Let the chili simmer for at least 1 hour before serving." />
+            <column name="user_id" valueNumeric="2"/>
+            <column name="created_by" value="Username-2"/>
+        </insert>
+    </changeSet>
+    <changeSet id="05.07.2022 00:15:30" author="oguzhan.turan">
+        <insert tableName="favorite_user_recipe">
+            <column name="ID" valueNumeric="1" />
+            <column name="user_id" valueNumeric="1" />
+            <column name="recipe_id" valueNumeric="1" />
+            <column name="is_private" valueBoolean="FALSE" />
+            <column name="list_name" valueBoolean="My_Fav" />
+            <column name="created_by" value="Username-1"/>
+        </insert>
+        <insert tableName="favorite_user_recipe">
+            <column name="ID" valueNumeric="2" />
+            <column name="user_id" valueNumeric="1" />
+            <column name="recipe_id" valueNumeric="2" />
+            <column name="is_private" valueBoolean="FALSE" />
+            <column name="list_name" valueBoolean="My_Fav" />
+            <column name="created_by" value="Username-1"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
